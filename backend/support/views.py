@@ -1,11 +1,31 @@
 from django.http import JsonResponse
-from .models import Order
 from datetime import date
 from django.http import JsonResponse
 from .models import Order
 from .return_policies import RETURN_POLICIES
 
+
+def missing_order_id(request):
+    return JsonResponse(
+        {
+            "error": "Order number required",
+            "message": "Please provide your order number."
+        },
+        status=400
+    )
+
 def get_order_status(request, order_id):
+    if not order_id.isdigit():
+        return JsonResponse(
+            {
+                "error": "Invalid order number",
+                "message": "Please provide a valid order number."
+            },
+            status=400
+        )
+
+    order_id = int(order_id)
+
     try:
         order = Order.objects.get(order_id=order_id)
 
@@ -23,7 +43,6 @@ def get_order_status(request, order_id):
             },
             status=404
         )
-
 
 
 def get_return_policy(request, category):

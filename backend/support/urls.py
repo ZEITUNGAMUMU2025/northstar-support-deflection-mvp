@@ -3,7 +3,8 @@ from . import views
 
 
 urlpatterns = [
-    path("orders/<int:order_id>", views.get_order_status),
+    path("orders/", views.missing_order_id),
+    path("orders/<str:order_id>", views.get_order_status),
 
     path("returns/", views.get_return_categories),
     path("returns/status", views.get_return_status),

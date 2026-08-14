@@ -4,6 +4,7 @@ from .models import Order
 
 class OrderStatusAPITests(TestCase):
 
+    
     def setUp(self):
         Order.objects.create(
             order_id=110,
@@ -37,7 +38,9 @@ class OrderStatusAPITests(TestCase):
         self.assertEqual(
             response.json()["expected_delivery"],
             "2026-06-20",
+
         )
+
 
     def test_nonexistent_order_returns_not_found(self):
         response = self.client.get("/api/orders/113")
@@ -47,6 +50,25 @@ class OrderStatusAPITests(TestCase):
             response.json()["error"],
             "Order not found",
         )
+
+    def test_missing_order_id_returns_validation_error(self):
+        response = self.client.get("/api/orders/")
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(
+        response.json()["error"],
+        "Order number required",
+    )
+
+    def test_invalid_order_id_format_returns_validation_error(self):
+        response = self.client.get("/api/orders/300*")
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(
+        response.json()["error"],
+        "Invalid order number",
+    )    
+        
 
 
 class ReturnAPITests(TestCase):
@@ -113,4 +135,37 @@ class ReturnAPITests(TestCase):
         self.assertIn(
             "4-7 working days",
             response.json()["message"],
-        )        
+        )    
+
+
+    def test_eligible_return(self):
+        response = self.client.get(
+            "/api/returns/clothing/check"
+            "?purchase_date=2026-08-10"
+    )
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json()["eligible"])        
+
+
+    def test_invalid_purchase_date(self):
+        response = self.client.get(
+            "/api/returns/clothing/check"
+            "?purchase_date=banana"
+    )
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(
+            response.json()["error"],
+            "Invalid purchase date",
+    )  
+
+
+    def test_future_purchase_date(self):
+        response = self.client.get(
+            "/api/returns/clothing/check"
+            "?purchase_date=2099-01-01"
+    )
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(
+            response.json()["error"],
+            "Invalid purchase date",
+    )      
