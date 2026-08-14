@@ -9,8 +9,8 @@ The purpose of this directory is to document what the system is expected to do a
 ```text
 tests-and-docs/
 ├── acceptance-criteria/
-├── api-project-documents/
-├── test-evidence/
+├── API-project-documents/
+├── Test-evidence/
 └── README.md
 ```
 
@@ -23,11 +23,11 @@ For TASK-03, this includes:
 - OS-01 to OS-05 — Order Status
 - RR-01 to RR-06 — Returns & Refunds
 
-## api-project-documents/
+## API-project-documents/
 
 Contains documentation describing the APIs, endpoints, expected responses, validation behavior, and other project-level technical information.
 
-## test-evidence/
+## Test-evidence/
 
 Contains records of test execution and verification results, including automated test results and supporting evidence where applicable.
 
