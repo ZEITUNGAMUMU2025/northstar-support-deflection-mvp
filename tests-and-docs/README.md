@@ -5,5 +5,5 @@ This directory contains project-level QA/ documentation for the Northstar Suppor
 It includes:
 - Acceptance criteria
 - Test evidence
-- API documentation
-- Project-level testing documentation
+- API/Project documentation
+  
