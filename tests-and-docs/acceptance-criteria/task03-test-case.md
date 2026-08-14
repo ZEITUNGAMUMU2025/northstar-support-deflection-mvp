@@ -20,7 +20,7 @@ OS-05 | Order 300*| Invalid input format| Display a clear validation message req
 ID| Customer Input|condition| Expected System Response
 |---|---|---|---|
 RR-01| How do I return these boxers?| Clothing |can be returned within 10 days of purchase, unworn with original tag intact
-RR-02| How do I return my fridge?| Electronics |can be returned within 20 days of purchase. Customer should visit the return portal
+RR-02| How do I return my fridge?| Electronic |can be returned within 20 days of purchase. Customer should visit the return portal
 RR-03| I want to return my Coach| Furniture | can be returned within 7 days of delivery in the original packaging
 RR-04| How do I return?| Product category missing |Ask customer to confirm the category: electronics, furniture, or clothing
 RR-05| I bought this 1 month ago|Return window expired |Inform customer that the return window has expired and advise contacting customer support
