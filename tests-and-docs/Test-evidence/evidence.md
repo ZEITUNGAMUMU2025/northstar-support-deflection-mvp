@@ -56,6 +56,7 @@ These tests verify both normal behavior and validation/edge cases.
 ## Verification Status
 
 Area| Result
+|---|---|
 Order Status| PASS
 Returns & Refunds| PASS
 Input Validation| PASS
